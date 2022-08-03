@@ -1,0 +1,4 @@
+packages: dzerver.cabal
+
+-- The only sensible test display option.
+test-show-details: streaming

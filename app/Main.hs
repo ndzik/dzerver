@@ -1,4 +1,7 @@
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TypeFamilies #-}
+
 module Main where
 
 main :: IO ()
-main = putStrLn "Hello, Haskell!"
+main = print "Hello, World!"

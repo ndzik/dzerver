@@ -31,11 +31,20 @@ executable dzerver
     -- other-extensions:
     build-depends:      base ^>=4.14.3.0
                         , dzerver-lib
+                        , aeson
+                        , warp
+                        , wai
+                        , http-types
+                        , bytestring
+                        , yesod
     hs-source-dirs:     app
     default-language:   Haskell2010
 
 library dzerver-lib
+    exposed-modules:    Dzerver.Modules.Map
+                        , Dzerver.Modules.GPS
     build-depends:      base ^>=4.14.3.0
+                        , freer-simple
     hs-source-dirs:     lib
     default-language:   Haskell2010
 
@@ -47,6 +56,8 @@ test-suite dzerver-test
                         -rtsopts
                         -with-rtsopts=-N
     default-language:   Haskell2010
-    other-modules:
+    other-modules:      Test.Modules.GPS
     build-depends:      base ^>=4.14.3.0
                         , dzerver-lib
+                        , QuickCheck
+                        , ieee754
