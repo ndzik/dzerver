@@ -1,19 +1,28 @@
 module Dzerver.Modules.GPS
-  ( Location (..),
+  ( LocationUnit (..),
     convert,
   )
 where
 
 import GHC.Float
 
-data Location
+data Position = Position Latitude Longitude
+  deriving (Show, Eq)
+
+newtype Longitude = Longitude LocationUnit
+  deriving (Show, Eq)
+
+newtype Latitude = Latitude LocationUnit
+  deriving (Show, Eq)
+
+data LocationUnit
   = -- | Decimal Degrees
     DD Double
   | -- | Degrees Minutes Seconds
     DMS Double Double Double
   deriving (Show, Eq)
 
-convert :: Location -> Location
+convert :: LocationUnit -> LocationUnit
 convert (DD deg) =
   let deg' = truncateDouble deg
       m = (deg - deg') * 60

@@ -1,7 +1,15 @@
 module Main (main) where
 
 import Test.Modules.GPS
-import Test.QuickCheck
+import Test.Tasty
+import Test.Tasty.QuickCheck
 
 main :: IO ()
-main = verboseCheck $ withMaxSuccess 1000 prop_Convert
+main = defaultMain tests
+
+tests :: TestTree
+tests =
+  testGroup
+    "Dzerver"
+    [ testProperty "Location GPS data conversion" prop_Convert
+    ]
