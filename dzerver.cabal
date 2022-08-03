@@ -46,6 +46,8 @@ library dzerver-lib
     exposed-modules:    Dzerver.Modules.Map
                         , Dzerver.Modules.GPS
     build-depends:      base ^>=4.14.3.0
+                        , aeson
+                        , bytestring
                         , freer-simple
     hs-source-dirs:     lib
     default-language:   Haskell2010
@@ -63,6 +65,7 @@ test-suite dzerver-test
     other-modules:      Test.Modules.GPS
     build-depends:      base ^>=4.14.3.0
                         , dzerver-lib
+                        , aeson
                         , QuickCheck
                         , ieee754
                         , tasty

@@ -3,8 +3,18 @@
 module Test.Modules.GPS where
 
 import Data.AEq
+import Data.Aeson
 import Dzerver.Modules.GPS
 import Test.QuickCheck hiding (scale, (===))
+
+instance Arbitrary Position where
+  arbitrary = Position <$> arbitrary <*> arbitrary
+
+instance Arbitrary Longitude where
+  arbitrary = Longitude <$> arbitrary
+
+instance Arbitrary Latitude where
+  arbitrary = Latitude <$> arbitrary
 
 instance Arbitrary LocationUnit where
   arbitrary = do
@@ -24,3 +34,8 @@ instance AEq LocationUnit where
 
 prop_Convert :: LocationUnit -> Bool
 prop_Convert l = l ~== (convert . convert $ l)
+
+prop_Encode :: Position -> Bool
+prop_Encode p = case decode . encode $ p of
+  Nothing -> False
+  Just p' -> p == p'

@@ -1,26 +1,34 @@
+{-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DeriveGeneric #-}
+
 module Dzerver.Modules.GPS
   ( LocationUnit (..),
+    Latitude (..),
+    Longitude (..),
+    Position (..),
     convert,
   )
 where
 
+import Data.Aeson
 import GHC.Float
+import GHC.Generics
 
 data Position = Position Latitude Longitude
-  deriving (Show, Eq)
+  deriving (Generic, Show, Eq, FromJSON, ToJSON)
 
 newtype Longitude = Longitude LocationUnit
-  deriving (Show, Eq)
+  deriving (Generic, Show, Eq, FromJSON, ToJSON)
 
 newtype Latitude = Latitude LocationUnit
-  deriving (Show, Eq)
+  deriving (Generic, Show, Eq, FromJSON, ToJSON)
 
 data LocationUnit
   = -- | Decimal Degrees
     DD Double
   | -- | Degrees Minutes Seconds
     DMS Double Double Double
-  deriving (Show, Eq)
+  deriving (Generic, Show, Eq, FromJSON, ToJSON)
 
 convert :: LocationUnit -> LocationUnit
 convert (DD deg) =

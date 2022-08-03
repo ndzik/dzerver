@@ -11,5 +11,6 @@ tests :: TestTree
 tests =
   testGroup
     "Dzerver"
-    [ testProperty "Location GPS data conversion" prop_Convert
+    [ testProperty "Location GPS data conversion" prop_Convert,
+    testProperty "Position GPS encoding" prop_Encode
     ]
